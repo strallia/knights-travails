@@ -1,4 +1,5 @@
 import './styles.css';
+import { Node } from './Node';
 
 function getMoves(coordinateArr) {
   const coordChanges = [
@@ -48,4 +49,4 @@ function findShortestPath(tree) {}
  */
 function knightMoves(stratCoord, endCoord) {}
 
-console.log(getMoves([0, 5]));
+console.log(buildTree([0, 0]));
