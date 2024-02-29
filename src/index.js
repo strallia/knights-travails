@@ -1,6 +1,6 @@
 import './styles.css';
 
-function getPossibleMoves(coordinateArr) {
+function getMoves(coordinateArr) {
   const coordChanges = [
     [-1, 2],
     [-2, 1],
@@ -28,4 +28,4 @@ function getPossibleMoves(coordinateArr) {
   return possibleMoves;
 }
 
-console.log(getPossibleMoves([0, 3]));
+console.log(getMoves([0, 3]));
