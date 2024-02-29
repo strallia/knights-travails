@@ -41,12 +41,16 @@ function knightMoves(startCoord, endCoord) {
   let node;
 
   while (q.length > 0) {
+    // dequeue and visit first node
     node = q.shift();
     const { position, predecessors } = node;
+
+    // stop looping through queue if node position matches given end coordinate
     if (position[0] === endCoord[0] && position[1] === endCoord[1]) {
       break;
     }
 
+    // else add children to queue and continue looping
     const childPredecessors = [...predecessors];
     childPredecessors.push(position);
     const childNodes = getMoves(position, predecessors);
