@@ -28,4 +28,24 @@ function getMoves(coordinateArr) {
   return possibleMoves;
 }
 
-console.log(getMoves([0, 3]));
+/**
+ * given startting coord, build tree with possible moves.
+ * each node is an obj containing `coord ` for `data` key and
+ * a `arr` for `moves` key. The `arr` is an arr of possible moves
+ * for the `coord` value.
+ */
+function buildTree(startCoord) {}
+
+/**
+ * given tree, traverses tree looking for shortest path.
+ *
+ */
+function findShortestPath(tree) {}
+
+/**
+ * given start and end coord,
+ * runs buildTree() then returns formatted result of findShortestPath()
+ */
+function knightMoves(stratCoord, endCoord) {}
+
+console.log(getMoves([0, 5]));
