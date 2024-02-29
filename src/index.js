@@ -1,7 +1,7 @@
 import './styles.css';
 import { Node } from './Node';
 
-function getMoves(coordinateArr) {
+function getMoves(coord, prevMoves = []) {
   const coordChanges = [
     [-1, 2],
     [-2, 1],
@@ -13,18 +13,23 @@ function getMoves(coordinateArr) {
     [1, 2],
   ];
 
-  // apply changes to coordinates and keep
-  // moves that are on the board
+  // find all possible moves,
+  // keep moves that are on the board,
+  // then remove moves that have already been visited
   const possibleMoves = coordChanges
-    .map((change) => [
-      coordinateArr[0] + change[0],
-      coordinateArr[1] + change[1],
-    ])
-    .filter((coord) => {
-      const x = coord[0];
-      const y = coord[1];
-      if (x >= 0 && x <= 7 && y >= 0 && y <= 7) return coord;
+    .map((change) => [coord[0] + change[0], coord[1] + change[1]])
+    .filter((pair) => {
+      const x = pair[0];
+      const y = pair[1];
+      if (x >= 0 && x <= 7 && y >= 0 && y <= 7) return pair;
       return false;
+    })
+    .filter((pair) => {
+      const isVisited = prevMoves.find(
+        (element) => element[0] === pair[0] && element[1] === pair[1],
+      );
+      if (isVisited) return false;
+      return true;
     });
   return possibleMoves;
 }
@@ -35,7 +40,7 @@ function getMoves(coordinateArr) {
  * a `arr` for `moves` key. The `arr` is an arr of possible moves
  * for the `coord` value.
  */
-function buildTree(startCoord) {}
+function buildTree(coord) {}
 
 /**
  * given tree, traverses tree looking for shortest path.
@@ -49,4 +54,5 @@ function findShortestPath(tree) {}
  */
 function knightMoves(stratCoord, endCoord) {}
 
-console.log(buildTree([0, 0]));
+// console.log(buildTree([0, 0]));
+console.log(getMoves([0, 0], [[2, 1]]));
