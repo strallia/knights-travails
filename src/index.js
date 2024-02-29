@@ -34,8 +34,8 @@ function getMoves(coord, prevMoves = []) {
   return possibleMoves;
 }
 
-// given start and end coordinate, returns array of
-// coordinates for the shortest path
+// given start and end coordinate, returns string declaring
+// number of moves and coordinates taken for the shortest path
 function knightMoves(startCoord, endCoord) {
   const q = [new Node(startCoord)];
   let node;
@@ -59,7 +59,10 @@ function knightMoves(startCoord, endCoord) {
     });
   }
 
-  return [...node.predecessors, node.position];
+  // format console return
+  const path = [...node.predecessors, node.position];
+  const pathString = path.map((move) => JSON.stringify(move)).join('\n');
+  return `You made it in ${path.length - 1} moves! Here's your path:\n${pathString}`;
 }
 
 console.log(knightMoves([0, 0], [3, 3]));
