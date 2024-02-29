@@ -34,25 +34,30 @@ function getMoves(coord, prevMoves = []) {
   return possibleMoves;
 }
 
-/**
- * given startting coord, build tree with possible moves.
- * each node is an obj containing `coord ` for `data` key and
- * a `arr` for `moves` key. The `arr` is an arr of possible moves
- * for the `coord` value.
- */
-function buildTree(coord) {}
+// given start and end coordinate, returns array of
+// coordinates for the shortest path
+function knightMoves(startCoord, endCoord) {
+  const q = [new Node(startCoord)];
+  let node;
 
-/**
- * given tree, traverses tree looking for shortest path.
- *
- */
-function findShortestPath(tree) {}
+  while (q.length > 0) {
+    node = q.shift();
+    const { position, predecessors } = node;
+    if (position[0] === endCoord[0] && position[1] === endCoord[1]) {
+      break;
+    }
 
-/**
- * given start and end coord,
- * runs buildTree() then returns formatted result of findShortestPath()
- */
-function knightMoves(stratCoord, endCoord) {}
+    const childPredecessors = [...predecessors];
+    childPredecessors.push(position);
+    const childNodes = getMoves(position, predecessors);
+    childNodes.forEach((childPosition) => {
+      q.push(new Node(childPosition, childPredecessors));
+    });
+  }
 
-// console.log(buildTree([0, 0]));
-console.log(getMoves([0, 0], [[2, 1]]));
+  return [...node.predecessors, node.position];
+}
+
+console.log(knightMoves([0, 0], [3, 3]));
+console.log(knightMoves([3, 3], [0, 0]));
+console.log(knightMoves([0, 0], [7, 7]));

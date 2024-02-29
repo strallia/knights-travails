@@ -1,6 +1,6 @@
 export class Node {
-  constructor(value, movesArr) {
-    this.data = value;
-    this.moves = movesArr;
+  constructor(coord = null, predecessors = []) {
+    this.position = coord;
+    this.predecessors = predecessors;
   }
 }
